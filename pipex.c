@@ -1,13 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 16:42:57 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/05 16:44:57 by hasserao         ###   ########.fr       */
+/*   Created: 2023/01/08 23:03:24 by hasserao          #+#    #+#             */
+/*   Updated: 2023/01/15 11:36:47 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "pipex.h"
+
+void parsing (t_pipex pipex,char **env)
+{
+
+}
+char *find_path(char **envp)
+
+int main (int argc,char **argv ,char **env)
+{
+	kill(-1, SIGUSR1);
+}
