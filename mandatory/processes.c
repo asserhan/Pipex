@@ -6,11 +6,32 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 18:44:38 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/20 02:36:04 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/20 22:00:36 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void 	get_path(t_pipex *pipex,char **envp)
+{
+	char *temp;
+	int i;
+	i = -1;
+	while (ft_strncmp("PATH",*envp,4)!=0)
+			envp++;
+	pipex->paths = *envp + 5;
+	pipex->cmd_paths = ft_split(pipex->paths,':');
+	if (!pipex->cmd_paths)
+		ft_msg_error("Error\n");
+	while (pipex->cmd_paths[++i])
+	{
+		temp = pipex->cmd_paths[i];
+		pipex->cmd_paths[i]= ft_strjoin(temp,"/");
+		if (!pipex->cmd_paths[i])
+			ft_msg_error("Error\n");
+		free (temp);
+	}
+}
 
 char *get_cmd_path(char **path,char *command)
 {
@@ -27,6 +48,7 @@ char *get_cmd_path(char **path,char *command)
 	return (NULL);
 
 }
+
 void free_array(char **array)
 {
 	int i;

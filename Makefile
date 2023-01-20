@@ -2,7 +2,8 @@ NAME	=	pipex
 CC		=	cc
 FLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -rf
-SRC		=	utils.c utils2.c ft_split.c processes.c pipex.c error.c
+SRC_F	=	utils.c utils2.c ft_split.c processes.c pipex.c
+SRC		= 	$(addprefix mandatory/, $(SRC_F))
 OBJ		=	$(SRC:.c=.o)
 
 %.o: %.c pipex.h
