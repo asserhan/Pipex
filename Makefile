@@ -2,8 +2,7 @@ NAME	=	pipex
 CC		=	cc
 FLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -rf
-SRC		=	ft_strncmp.c ft_split.c  ft_memcpy.c ft_strdup.c ft_strlcpy.c ft_strlen.c ft_substr.c \
-			ft_strjoin.c pipex.c error.c
+SRC		=	utils.c utils2.c ft_split.c processes.c pipex.c error.c
 OBJ		=	$(SRC:.c=.o)
 
 %.o: %.c pipex.h
