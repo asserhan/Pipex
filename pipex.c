@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 23:03:24 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/20 01:38:59 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/20 02:36:38 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int main (int argc,char **argv ,char **envp)
 	if (pipe(pipex.end) == -1)
 		ft_msg_error ("Error with pipe\n ");
 	get_path(&pipex,envp);
+	pipex.cmd1_args =ft_split(argv[2],' ');
+	pipex.cmd2_args =ft_split(argv[3],' ');
 
 	// i =0;
 	// while (i < 1)
@@ -71,12 +73,12 @@ int main (int argc,char **argv ,char **envp)
 	if (pipex.pid1 == -1)
 		ft_msg_error("Error \n  No child process is created");
 	if (pipex.pid1 == 0) //child process 1
-		child1(pipex,argv,envp);
+		child1(pipex,envp);
 	pipex.pid2 = fork();
 	if (pipex.pid2 == -1)
 		ft_msg_error("Error \n  No child process is created");
 	if (pipex.pid2 == 0) //child process 2
-		child2(pipex,argv,envp);
+		child2(pipex,envp);
 	ft_close(&pipex);
 	waitpid(pipex.pid1,NULL,0);
 	waitpid(pipex.pid2,NULL,0);

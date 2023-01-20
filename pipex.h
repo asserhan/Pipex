@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 23:14:54 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/20 01:13:23 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/20 02:36:20 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char		*get_cmd_path(char **path,char *command);
 void 	get_path(t_pipex *pipex,char **envp);
-void child1 (t_pipex pipex,char **argv,char **envp);
-void child2 (t_pipex pipex,char **argv,char **envp);
+void child1 (t_pipex pipex,char **envp);
+void child2 (t_pipex pipex,char **envp);
 void ft_close (t_pipex *pipex);
 void free_array(char **array);
 #endif

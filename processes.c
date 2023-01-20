@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 18:44:38 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/20 01:28:11 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/20 02:36:04 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char *get_cmd_path(char **path,char *command)
 		if (access(my_cmd,F_OK | X_OK) == 0)
 			return (my_cmd);
 		free (my_cmd);
-		path++;
 	}
 	return (NULL);
 
@@ -37,7 +36,7 @@ void free_array(char **array)
 	free (array);
 }
 
-void child1 (t_pipex pipex,char **argv,char **envp)
+void child1 (t_pipex pipex,char **envp)
 {
 	if (dup2(pipex.infile,STDIN_FILENO) == -1) //to duplicate infile and replace stdin with the duplicate/so stdin points to infile
 		ft_msg_error("Error\n Wrong dup to infile");
@@ -45,7 +44,6 @@ void child1 (t_pipex pipex,char **argv,char **envp)
 		ft_msg_error ("Error\n Wrong dup to pipe end[1]");
 	if (close(pipex.end[0]) == -1)
 		ft_msg_error ("Error\n Wrong close of pipe end[0]");
-	pipex.cmd1_args =ft_split(argv[2],' ');
 	pipex.cmd = get_cmd_path (pipex.cmd_paths,pipex.cmd1_args[0]);
 	if (!pipex.cmd)
 	{
@@ -56,7 +54,7 @@ void child1 (t_pipex pipex,char **argv,char **envp)
 	execve(pipex.cmd,pipex.cmd1_args,envp);
 
 }
-void child2 (t_pipex pipex,char **argv,char **envp)
+void child2 (t_pipex pipex,char **envp)
 {
 	if (dup2(pipex.end[0],STDIN_FILENO)== -1)
 		ft_msg_error ("Error\n Wrong dup to pipe end[0]");
@@ -64,7 +62,6 @@ void child2 (t_pipex pipex,char **argv,char **envp)
 		ft_msg_error ("Error\n Wrong close of pipe end[1]");
 	if (dup2(pipex.outfile,STDOUT_FILENO) == -1)
 		ft_msg_error("Error\n Wrong dup to infile");
-	pipex.cmd2_args =ft_split(argv[3],' ');
 	pipex.cmd = get_cmd_path (pipex.cmd_paths,pipex.cmd2_args[0]);
 	if (!pipex.cmd)
 	{
