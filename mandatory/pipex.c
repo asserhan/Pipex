@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 23:03:24 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/20 16:50:22 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/21 21:01:35 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void ft_close (t_pipex *pipex)
 		ft_msg_error ("Error\n Wrong close of pipe end[1]");
 	if (close(pipex->end[0]) == -1)
 		ft_msg_error ("Error\n Wrong close of pipe end[0]");
-		if (close(pipex->infile) == -1)
+	if (close(pipex->infile) == -1)
 		ft_msg_error("Error\n Wrong close infile");
 	if (close(pipex->outfile) == -1)
 		ft_msg_error("Error\n Wrong close outfile");
@@ -40,6 +40,10 @@ void open_files (t_pipex *pipex,char **argv)
 		ft_msg_error("Error\n Wrong outfile");
 }
 
+void checker()
+{
+	system("leaks pipex");
+}
 int main (int argc,char **argv ,char **envp)
 {
 	t_pipex pipex;
@@ -66,5 +70,8 @@ int main (int argc,char **argv ,char **envp)
 	waitpid(pipex.pid1,NULL,0);
 	waitpid(pipex.pid2,NULL,0);
 	free_array(pipex.cmd_paths);
+	free_array (pipex.cmd1_args);
+	free_array(pipex.cmd2_args);
+
 	return (0);
 }

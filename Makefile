@@ -1,6 +1,6 @@
 NAME	=	pipex
 CC		=	cc
-FLAGS	=	-Wall -Wextra -Werror
+FLAGS	=	-Wall -Wextra -Werror  -fsanitize=leak 
 RM		=	rm -rf
 SRC_F	=	utils.c utils2.c ft_split.c processes.c pipex.c
 SRC		= 	$(addprefix mandatory/, $(SRC_F))
