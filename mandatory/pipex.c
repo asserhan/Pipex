@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 23:03:24 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/21 21:01:35 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/22 19:39:27 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,6 @@ void open_files (t_pipex *pipex,char **argv)
 		ft_msg_error("Error\n Wrong outfile");
 }
 
-void checker()
-{
-	system("leaks pipex");
-}
 int main (int argc,char **argv ,char **envp)
 {
 	t_pipex pipex;
