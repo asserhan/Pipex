@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 00:43:30 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/24 17:08:24 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/25 20:00:37 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ char		*get_cmd_path(char **path,char *command);
 void 	get_path(t_pipex *pipex,char **envp);
 void ft_close (t_pipex *pipex);
 void free_array(char **array);
-void child_process (char *cmd,t_pipex *pipex,char **envp);
+void multi_pipe (char *cmd,t_pipex *pipex,char **envp);
 #endif

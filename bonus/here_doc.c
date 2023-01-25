@@ -6,11 +6,9 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 05:16:08 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/25 01:11:39 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:48:11 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "pipex_bonus.h"
 
@@ -48,7 +46,7 @@ void write_to_heredoc (int *end,char *limiter)
 			ft_msg_error("Error\n");
 		if (ft_strncmp(limiter, line,ft_strlen(limiter)) == 0)
 		{
-			//free(line);
+			free(line);
 			close(end[1]);
 			exit(1);
 		}

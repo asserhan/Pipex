@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 05:15:50 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/25 01:45:36 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/25 20:01:16 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,7 @@ void ft_msg_error (char *str)
 	perror (str);
 	exit (1);
 }
-// void open_files (int argc,char **argv,t_pipex *pipex)
-// {
-// 	if (pipex->here_doc == 3)
-// 	{
-// 		here_doc(argv[2]);
-// 		pipex->infile = open ("here_doc_temp",O_RDONLY);
-// 		if (pipex->infile == -1)
-// 			ft_msg_error("Error\n Wrong infile");
-// 		pipex->outfile = open(argv[argc - 1],O_WRONLY | O_CREAT | O_APPEND,0644);
-// 		if (pipex->outfile == -1)
-// 			ft_msg_error("Error\n Wrong outfile");
-// 	}
-// 	if(pipex->here_doc == 2)
-// 	{
-// 		pipex->infile = open (argv[1],O_RDONLY);
-// 		if (pipex->infile == -1)
-// 			ft_msg_error("Error\n Wrong infile");
-// 		pipex->outfile = open (argv[argc - 1],O_RDWR | O_CREAT | O_TRUNC ,0644);
-// 		if (pipex->outfile == -1)
-// 			ft_msg_error("Error\n Wrong outfile");
 
-// 	}
-// }
 void execute_cmd(char *cmd,t_pipex *pipex,char **envp)
 {
 	get_path(pipex,envp);
@@ -52,10 +30,7 @@ void execute_cmd(char *cmd,t_pipex *pipex,char **envp)
 		free (cmd);
 		ft_msg_error("Error\n Command not found");
 	}
-	// char buff[1000];
-	// scanf("%s", buff);
-	// dprintf(1,"%s\n",buff);
-	if(execve(cmd,pipex->cmd_arg,envp) == -1)
+	if (execve(cmd,pipex->cmd_arg,envp) == -1)
 		ft_msg_error("Error\n program has not executed");
 	free_array(pipex->cmd_arg);
 	free_array(pipex->cmd_paths);
@@ -63,7 +38,7 @@ void execute_cmd(char *cmd,t_pipex *pipex,char **envp)
 
 }
 
-void child_process (char *cmd,t_pipex *pipex,char **envp)
+void multi_pipe (char *cmd,t_pipex *pipex,char **envp)
 {
 	int end[2];
 	int pid;
@@ -122,9 +97,8 @@ int main(int argc,char **argv,char **envp)
 			ft_msg_error("Error\n Wrong dup to infile");
 
 	}
-	// //open_files(argc,argv,&pipex);
 	while (pipex.here_doc < argc - 2) // outfile + last cmd
-			child_process (argv[pipex.here_doc++],&pipex,envp);
+			multi_pipe (argv[pipex.here_doc++],&pipex,envp);
 	if (dup2(pipex.outfile,STDOUT_FILENO)==-1)
 		ft_msg_error("Error\n Wrong dup to outfile");
 	execute_cmd(argv[argc -2],&pipex,envp);

@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 18:44:38 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/21 20:53:08 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:48:37 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void 	get_path(t_pipex *pipex,char **envp)
 		ft_msg_error("Error\n");
 	while (pipex->cmd_paths[++i])
 	{
+
 		temp = pipex->cmd_paths[i];
 		pipex->cmd_paths[i]= ft_strjoin(temp,"/");
 		if (!pipex->cmd_paths[i])
