@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 00:43:30 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/23 07:33:38 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:08:24 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_pipex
 	char **cmd_paths;
 	char **cmd1_args;
 	char **cmd2_args;
+	char **cmd_arg;
 	char *cmd;
 	int end[2];
 	pid_t pid1;
@@ -55,12 +56,12 @@ void ft_msg_error (char *str);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
-void here_doc (char *limiter);
+void	here_doc (char **argv);
+void write_to_heredoc (int *end,char *limiter);
 void open_files (int argc,char **argv,t_pipex *pipex);
 char		*get_cmd_path(char **path,char *command);
 void 	get_path(t_pipex *pipex,char **envp);
-void child1 (t_pipex pipex,char **envp);
-void child2 (t_pipex pipex,char **envp);
 void ft_close (t_pipex *pipex);
 void free_array(char **array);
+void child_process (char *cmd,t_pipex *pipex,char **envp);
 #endif
