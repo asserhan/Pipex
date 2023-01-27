@@ -5,21 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 02:04:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/27 05:23:53 by hasserao         ###   ########.fr       */
+/*   Created: 2023/01/27 00:05:08 by hasserao          #+#    #+#             */
+/*   Updated: 2023/01/27 00:23:58 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
-void	free_array(char **array)
+void	ft_msg_error(char *str)
 {
-	int	i;
-
-	i = -1;
-	while (array[++i])
-		free(array[i]);
-	free (array);
+	perror (str);
+	exit (1);
 }
 
 void	ft_close(t_pipex *pipex)
@@ -28,9 +24,11 @@ void	ft_close(t_pipex *pipex)
 		ft_msg_error ("Error\n Wrong close of pipe end[1]");
 	if (close(pipex->end[0]) == -1)
 		ft_msg_error ("Error\n Wrong close of pipe end[0]");
-	unlink ("here_doc_temp");
 	if (close(pipex->infile) == -1)
 		ft_msg_error("Error\n Wrong close infile");
 	if (close(pipex->outfile) == -1)
 		ft_msg_error("Error\n Wrong close outfile");
+	free_array(pipex->cmd_paths);
+	free_array (pipex->cmd1_args);
+	free_array(pipex->cmd2_args);
 }

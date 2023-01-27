@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:04:18 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/20 00:06:04 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/26 23:49:16 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,23 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		ft_strlcat(p, s2, len + 1);
 	}
 	return (p);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	while (*s)
+	{
+		if (*(char *)s == (char)c)
+		{
+			return ((char *)s);
+		}
+		s++;
+	}
+	if (*(char *)s == (char)c)
+	{
+		return ((char *)s);
+	}
+	return (NULL);
 }

@@ -6,12 +6,11 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:00:49 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/23 00:53:34 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/27 05:33:34 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -38,6 +37,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		ft_strlcpy(p, s + start, len + 1);
 	return (p);
 }
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
@@ -56,5 +56,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-
-

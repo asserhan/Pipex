@@ -6,13 +6,13 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 05:16:08 by hasserao          #+#    #+#             */
-/*   Updated: 2023/01/25 19:48:11 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/01/27 05:31:06 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	here_doc (char **argv)
+void	here_doc(char **argv)
 {
 	int		end[2];
 	int		pid;
@@ -33,18 +33,20 @@ void	here_doc (char **argv)
 		waitpid(pid, NULL, 0);
 	}
 }
-void write_to_heredoc (int *end,char *limiter)
+
+void	write_to_heredoc(int *end, char *limiter)
 {
-	char *line;
+	char	*line;
+
 	if (close(end[0]) == -1)
 		ft_msg_error ("Error\n Wrong close of pipe end[0]");
 	while (1)
 	{
-		write (1,"heredoc>",9);
+		write(1, "heredoc>", 9);
 		line = get_next_line (STDIN_FILENO);
 		if (!line)
 			ft_msg_error("Error\n");
-		if (ft_strncmp(limiter, line,ft_strlen(limiter)) == 0)
+		if (ft_strncmp(limiter, line, ft_strlen(limiter)) == 0)
 		{
 			free(line);
 			close(end[1]);
@@ -58,4 +60,3 @@ void write_to_heredoc (int *end,char *limiter)
 	if (close(end[1]) == -1)
 		ft_msg_error ("Error\n Wrong close of pipe end[1]");
 }
-
